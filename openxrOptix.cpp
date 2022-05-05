@@ -1,8 +1,4 @@
-﻿
-// #pragma warning(disable : 26812) //The enum type 'XrResult' is unscoped.Prefer 'enum class' over 'enum' (Enum.3)
-
-#include "openxrOptix.h"
-
+﻿#include "openxrOptix.h"
 
 /*PFN_xrGetInstanceProcAddr xrGetInstanceProcAddr;
 PFN_xrEnumerateApiLayerProperties xrEnumerateApiLayerProperties;
@@ -111,7 +107,8 @@ int main(int carc, const char** argv)
 
 	GLSLShader simpleShader;
 	if (simpleShader.Load("simple", "simple")) {
-		return EXIT_FAILURE;
+		return EXIT_SUCCESS; // BM: return EXIT_FAILURE was original, I changed to EXIT_SUCCESS
+		// however, no effect 
 	}
 
 	//init
@@ -411,6 +408,8 @@ int main(int carc, const char** argv)
 	XrEventDataBuffer event { XR_TYPE_EVENT_DATA_BUFFER, nullptr };
 	bool shouldClose = false;
 	while(!shouldClose){
+		event.type = XR_TYPE_EVENT_DATA_BUFFER;
+		event.next = nullptr;
 		r = xrPollEvent(instance, &event);
 		if (r == XR_SUCCESS) {
 			char buffer[XR_MAX_STRUCTURE_NAME_SIZE] = "";

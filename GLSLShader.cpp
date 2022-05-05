@@ -101,12 +101,12 @@ int GLSLShader::Create(const char* vt, const char* ft)
 
 int GLSLShader::Load(const char* vert, const char* frag)
 {
-	std::string vt = FS_ReadAllText((std::string("C:/Users/bipul/Desktop/openxrOptix/shaders/") + vert + ".vs").c_str());
+	std::string vt = FS_ReadAllText((std::string("../shaders/") + vert + ".vertex.glsl").c_str());
 	if (vt.size() == 0) {
 		Log("shader: %s.vs not found\n", vert);
 		return -1;
 	}
-	std::string ft = FS_ReadAllText((std::string("C:/Users/bipul/Desktop/openxrOptix/shaders/") + frag + ".fs").c_str());
+	std::string ft = FS_ReadAllText((std::string("../shaders/") + frag + ".fragment.glsl").c_str());
 	if (ft.size() == 0) {
 		Log("shader: %s.fs not found\n", frag);
 		return -1;
